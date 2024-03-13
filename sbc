@@ -1,0 +1,20 @@
+#!/usr/bin/fish
+
+if [ $argv[1] = bash ]
+    exec docker run \
+        --volume $HOME/go:/home/nonroot/go \
+        --volume $HOME/.cache:/home/nonroot/.cache \
+        --volume $HOME/.npm:/home/nonroot/.npm \
+        --volume $HOME/projects/statshouse:/statshouse \
+        --workdir /statshouse \
+        -it \
+        statshouse-build bash
+end
+
+exec docker run \
+    --volume $HOME/go:/home/nonroot/go \
+    --volume $HOME/.cache:/home/nonroot/.cache \
+    --volume $HOME/.npm:/home/nonroot/.npm \
+    --volume $HOME/projects/statshouse:/statshouse \
+    --workdir /statshouse \
+    statshouse-build $argv
